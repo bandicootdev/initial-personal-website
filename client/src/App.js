@@ -1,19 +1,20 @@
 import "./App.scss"
-
-import {DatePicker, Space} from 'antd';
-
+import SignIn from "./pages/Admin/SignIn";
+import Admin from "./pages/Admin";
+import Home from "./pages/Home";
+import Contact from "./pages/Contact";
 
 function App() {
-    const test = (date) => {
-        console.log(date)
-    }
     return (
-        <div className="app">
-            <Space direction="vertical">
-                <DatePicker onChange={date => test(date)}/>
-            </Space>,
+        <div>
+            <h1>Estamos en app</h1>
+            <Admin/>
+            <SignIn/>
+            <Home/>
+            <Contact/>
         </div>
-    );
+
+    )
 }
 
 export default App;
