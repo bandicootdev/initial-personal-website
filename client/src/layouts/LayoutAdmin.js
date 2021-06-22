@@ -1,16 +1,26 @@
 import React, {useState} from "react";
-import {Route, Switch} from 'react-router-dom';
+import {Route, Switch, Redirect} from 'react-router-dom';
 import {Layout} from "antd";
-import MenuTop from "../components/MenuTop";
-import MenuSider from "../components/MenuSider";
+import MenuTop from "../components/Admin/MenuTop";
+import MenuSider from "../components/Admin/MenuSider";
 
 import './LayoutAdmin.scss';
 import {Content, Footer, Header} from "antd/es/layout/layout";
+import SignIn from "../pages/Admin/SignIn/SignIn";
 
 export default function LayoutAdmin(props) {
     const {routes} = props;
     const [menuCollapse, setMenuCollapse] = useState(false);
+    const user = null;
 
+    if (!user) {
+        return (
+            <>
+                <Route path={'/admin/login'} component={SignIn}/>
+                <Redirect to={'/admin/login'}/>
+            </>
+        )
+    }
     return (
         <Layout>
             <MenuSider menuCollapse={menuCollapse}/>

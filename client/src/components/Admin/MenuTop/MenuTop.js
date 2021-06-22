@@ -1,6 +1,6 @@
 import React from "react";
 import logo
-    from '../../../src/assets/img/png/png-transparent-logo-cuisine-font-brand-product-crash-bandicoot-mutant-island-text-crash-bandicoot-n-sane-trilogy-logo.png'
+    from '../../../assets/img/png/png-transparent-logo-cuisine-font-brand-product-crash-bandicoot-mutant-island-text-crash-bandicoot-n-sane-trilogy-logo.png'
 import './MenuTop.scss'
 import {Button} from "antd";
 import {MenuFoldOutlined, MenuUnfoldOutlined, PoweroffOutlined} from "@ant-design/icons";
