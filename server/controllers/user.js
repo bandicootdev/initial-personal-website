@@ -11,24 +11,28 @@ module.exports.signUp = async (req, res) => {
     user.role = 'admin';
     user.active = false;
     if (!password || !repeatPassword) {
-        res.status(404).send({message: 'pwd is undefined'});
+        res.status(400).json({message: 'pwd is undefined'});
     } else {
         if (password !== repeatPassword) {
-            res.status(404).send({message: 'pwd is incorrect'});
+            res.status(400).json({message: 'pwd is incorrect'});
         } else {
             bcrypt.hash(password, null, null, (err, hash) => {
                 if (err) {
-                    res.status(500).send({message: "error encryption fro user"});
+                    res.status(500).json({message: "error encryption fro user"});
                 } else {
                     user.password = hash;
                     user.save((error, userStore) => {
                         if (error) {
-                            res.status(500).send({message: "error save user"});
+                            if (error.code === 11000) {
+                                res.status(400).json({message: `already before register User`});
+                            } else {
+                                res.status(400).json({message: "error save user"});
+                            }
                         } else {
                             if (!userStore) {
-                                res.status(404).send({message: "error save user"});
+                                res.status(400).json({message: "error save user"});
                             } else {
-                                res.status(200).send({user: userStore});
+                                res.status(200).json({message: 'User registration successfully', user: userStore});
                             }
                         }
                     });
